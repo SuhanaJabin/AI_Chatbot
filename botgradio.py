@@ -1,7 +1,14 @@
+import os
 import openai
 import gradio
 
-openai.api_key = "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"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
+
+openai.api_key = api_key
 
 messages = [
     {"role": "system", "content": "You are a psychologist."}
@@ -14,10 +21,10 @@ def CustomChatGPT(user_input):
         messages=messages
     )
 
-    ChatGPT_reply = response.choices[0].message.content
-    messages.append({"role": "assistant", "content": ChatGPT_reply})
+    chatGPT_reply = response.choices[0].message.content
+    messages.append({"role": "assistant", "content": chatGPT_reply})
 
-    return ChatGPT_reply
+    return chatGPT_reply
 
 demo = gradio.Interface(fn=CustomChatGPT, inputs="text", outputs="text", title="Digital Psychologist")
 
