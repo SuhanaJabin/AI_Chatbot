@@ -1,7 +1,6 @@
 import os
 import openai
 import gradio
-
 from dotenv import load_dotenv
 
 load_dotenv()
